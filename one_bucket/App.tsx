@@ -5,6 +5,13 @@
  * @format
  */
 
+<<<<<<< Updated upstream
+=======
+import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { darkColors, lightColors } from 'constants/colors';
+>>>>>>> Stashed changes
 import React from 'react';
 import type { PropsWithChildren } from 'react';
 import {
@@ -30,6 +37,7 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
+<<<<<<< Updated upstream
 function Section({ children, title }: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -54,14 +62,45 @@ function Section({ children, title }: SectionProps): React.JSX.Element {
       </Text>
     </View>
   );
+=======
+const isDarkMode = useColorScheme() === 'dark';
+const colors = isDarkMode ? darkColors : lightColors
+
+const MainScreen = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Home">
+      {mainRoutes.map(route => (
+        <Tab.Screen
+          key={`screen-${route.name}`}
+          name={route.name}
+          component={route.component}
+          options={{
+            headerStyle: {
+              backgroundColor: colors.ICON_BG
+            },
+            headerTintColor: colors.ICON_TEXT,
+            tabBarIcon: ({ focused }) => {
+              return (
+                <Image
+                  testID={`tabIcon-${route.name}`}
+                  source={focused ? route.activeIcon : route.inactiveIcon}
+                  style={{ width: 20, height: 20 }}
+                />
+              )
+            }
+          }}
+        />
+      ))}
+    </Tab.Navigator>
+  )
+>>>>>>> Stashed changes
 }
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  };3
 
   return (
     <SafeAreaView style={backgroundStyle}>
